@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Yonge Jewelry</title>
+<meta name="description" content="Yonge Jewelry, 29 St Andrew St, Kensington Market, Toronto. Fine jewelry in 18k gold vermeil, 925 sterling silver and surgical steel. Shop online with Square, see pieces in store, or book a private appointment.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+/* Layout: a private salon in alternating rooms. Noir rooms carry the service and the words;
+   bone rooms carry the pieces, matched to the photographs' own backdrop so each plate sits flush.
+   One 1160px column, generous vertical air, hairline champagne rules. The hero's arched plate is
+   the single flourish; everything else stays quiet. One committed look, no light/dark variants. */
+:root{
+  --noir:#0E0C0A; --noir-2:#17130F; --ivory:#F0E9DF; --ivory-2:#ADA395; --rule-noir:#30291F;
+  --bone:#F0EAE4; --bone-2:#E7DFD6; --ink:#1B1712; --ink-2:#5E5548; --rule-bone:#D8CEC2;
+  --champagne:#C9A96E; --champagne-hi:#E4CE9F; --champagne-deep:#765820; --ok:#8FBF9A; --warn:#E3A48F;
+
+  --fg:var(--ivory); --fg2:var(--ivory-2); --rule:var(--rule-noir); --acc:var(--champagne); --on-acc:var(--noir); --room:var(--noir); --field:var(--noir-2);
+
+  --display:"Cormorant Garamond","Cormorant",Didot,"Bodoni MT","Times New Roman",serif;
+  --sans:"Jost","Century Gothic","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --t-xs:.7rem; --t-s:.9rem; --t-m:1.03rem; --t-l:1.5rem;
+  --t-xl:clamp(2.2rem,4.6vw,3.5rem); --t-2xl:clamp(3rem,8.2vw,6.1rem);
+  color-scheme:dark;
+}
+.bone{--fg:var(--ink);--fg2:var(--ink-2);--rule:var(--rule-bone);--acc:var(--champagne-deep);--on-acc:var(--bone);--room:var(--bone);--field:#F8F4EF;background:var(--bone);color:var(--ink)}
+
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--noir);color:var(--ivory);font-family:var(--sans);font-size:var(--t-m);font-weight:400;line-height:1.65;letter-spacing:.01em;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+[id]{scroll-margin-top:92px}
+a{color:inherit}
+p,h1,h2,h3,figure{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+em{font-style:italic}
+
+.wrap{max-width:1160px;margin-inline:auto;padding-inline:clamp(18px,4.5vw,48px)}
+.label{font:500 var(--t-xs)/1.4 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--acc)}
+.serif{font-family:var(--display)}
+.muted{color:var(--fg2)}
+.tl{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--acc);padding-bottom:2px}
+.tl:hover{color:var(--acc)}
+.hair{height:1px;border:0;margin:0;background:linear-gradient(90deg,transparent,var(--champagne) 18%,var(--champagne) 82%,transparent);opacity:.45}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;font:500 var(--t-xs)/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;padding:18px 28px;border:1px solid var(--acc);background:transparent;color:var(--fg);text-decoration:none;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.btn:hover{background:var(--acc);color:var(--on-acc)}
+.btn.solid{background:var(--champagne);border-color:var(--champagne);color:var(--noir)}
+.btn.solid:hover{background:var(--champagne-hi);border-color:var(--champagne-hi)}
+.btn.small{padding:12px 18px}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* utility bar + header */
+.util{border-bottom:1px solid var(--rule)}
+.util .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 28px;padding-block:9px;font-size:var(--t-xs);letter-spacing:.2em;text-transform:uppercase;color:var(--fg2)}
+.status{display:inline-flex;align-items:center;gap:9px}
+.status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--fg2);flex:none}
+.status.is-open::before{background:var(--ok)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--noir);border-bottom:1px solid var(--rule)}
+.top .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;padding-block:14px}
+.top nav{display:flex;gap:28px;align-items:center}
+.top nav.r{justify-content:flex-end}
+.top nav a:not(.btn){font:400 var(--t-xs)/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--fg2);padding-block:8px;transition:color .2s}
+.top nav a:not(.btn):hover{color:var(--fg)}
+.logo{display:block;line-height:0}
+.logo img{display:block;width:128px;height:auto}
+@media (max-width:980px){
+  .top .wrap{grid-template-columns:auto minmax(0,1fr)}
+  .top nav.l,.top nav.r a:not(.btn){display:none}
+  .logo{grid-column:1;grid-row:1}
+  .logo img{width:104px}
+}
+
+/* hero */
+.hero>.wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:36px 72px;align-items:center;padding-block:clamp(40px,7vw,104px)}
+.hero-copy{display:grid;gap:28px;justify-items:start;min-width:0}
+.hero h1{font:300 var(--t-2xl)/.98 var(--display);letter-spacing:-.012em;text-wrap:balance}
+.hero h1 em{color:var(--champagne)}
+.hero .lede{font-size:1.14rem;line-height:1.7;color:var(--fg2);max-width:44ch}
+.plate{justify-self:end;width:min(100%,400px);display:grid;gap:20px;min-width:0}
+.plate .arch{padding:10px;border:1px solid var(--champagne);border-radius:999px 999px 0 0}
+.plate img{display:block;width:100%;aspect-ratio:466/599;object-fit:cover;border-radius:999px 999px 0 0;background:var(--bone)}
+.plate figcaption{display:grid;gap:6px;text-align:center}
+.plate .name{font:400 var(--t-l)/1.2 var(--display)}
+.plate .meta{font-size:var(--t-s);color:var(--fg2)}
+@media (max-width:860px){
+  .hero>.wrap{grid-template-columns:minmax(0,1fr)}
+  .plate{justify-self:center;width:min(82%,330px)}
+}
+
+.assure{border-top:1px solid var(--rule)}
+.assure ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.assure li{padding:22px 12px;text-align:center;border-left:1px solid var(--rule);font:400 var(--t-xs)/1.5 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--fg2)}
+.assure li:first-child{border-left:0}
+@media (max-width:760px){
+  .assure ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .assure li:nth-child(3){border-left:0}
+  .assure li:nth-child(n+3){border-top:1px solid var(--rule)}
+}
+
+/* rooms */
+.room{padding-block:clamp(64px,9vw,128px)}
+.room>.wrap{display:grid;gap:clamp(36px,5vw,64px)}
+.head{display:grid;gap:18px;justify-items:center;text-align:center}
+.head h2{font:300 var(--t-xl)/1.05 var(--display);letter-spacing:-.005em;text-wrap:balance}
+.head h2 em{color:var(--acc)}
+.head .lede{color:var(--fg2);max-width:52ch}
+
+/* collection */
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 28px}
+.chip{background:none;border:0;border-bottom:1px solid transparent;padding:8px 0;font:500 var(--t-xs)/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--fg2);cursor:pointer}
+.chip:hover{color:var(--fg)}
+.chip[aria-pressed="true"]{color:var(--fg);border-color:var(--acc)}
+.pieces{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:44px 28px}
+@media (max-width:920px){.pieces{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 18px}}
+.piece{display:grid;grid-template-rows:auto auto 1fr auto auto;gap:14px;min-width:0}
+.piece figure{overflow:hidden;aspect-ratio:4/5;background:var(--bone-2)}
+.piece img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:no-preference){.piece:hover img{transform:scale(1.045)}}
+.piece .tag{font:500 .64rem/1.5 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--fg2)}
+.piece .tag b{font-weight:500;color:var(--acc)}
+.piece h3{font:400 1.42rem/1.15 var(--display)}
+.piece .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 12px}
+.price{font-variant-numeric:tabular-nums lining-nums;letter-spacing:.04em}
+.enq{font:500 .66rem/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--acc);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px}
+.enq:hover{color:var(--fg)}
+.center{text-align:center}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.services article{background:var(--room);padding:clamp(26px,4vw,48px);display:grid;gap:14px;align-content:start;justify-items:start;min-width:0}
+.services h3{font:400 clamp(1.6rem,2.6vw,2rem)/1.1 var(--display)}
+.services p{color:var(--fg2);max-width:46ch}
+@media (max-width:760px){.services{grid-template-columns:minmax(0,1fr)}}
+
+/* gold */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 40px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;gap:8px;align-content:start;border-top:1px solid var(--rule);padding-top:20px;min-width:0}
+.steps li::before{content:counter(s,upper-roman);font:400 1.5rem/1 var(--display);color:var(--acc);letter-spacing:.08em}
+.steps b{font:400 1.55rem/1.15 var(--display)}
+.steps span{font-size:var(--t-s);color:var(--fg2)}
+@media (max-width:760px){.steps{grid-template-columns:minmax(0,1fr)}}
+.scroll{overflow-x:auto}
+.purity{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums lining-nums}
+.purity caption{text-align:left;padding-bottom:12px;color:var(--fg2);font-size:var(--t-s)}
+.purity th{text-align:left;font:500 var(--t-xs)/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--fg2);padding:10px 16px 10px 0;border-bottom:1px solid var(--rule)}
+.purity td{padding:13px 16px 13px 0;border-bottom:1px solid var(--rule);white-space:nowrap}
+.purity td:first-child{font:400 1.5rem/1 var(--display)}
+.purity td.b{width:46%;min-width:90px}
+.purity td:last-child{text-align:right;padding-right:0}
+.bar{display:block;height:3px;background:var(--rule)}
+.bar i{display:block;height:100%;width:calc(var(--p)*1%);background:var(--acc)}
+
+/* materials */
+.metals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 48px}
+.metals article{display:grid;gap:10px;align-content:start;justify-items:center;text-align:center;min-width:0}
+.metals .mark{font:300 clamp(3.2rem,6vw,4.6rem)/1 var(--display);color:var(--acc);letter-spacing:.02em}
+.metals h3{font:500 var(--t-xs)/1.4 var(--sans);letter-spacing:.28em;text-transform:uppercase}
+.metals p{color:var(--fg2);max-width:32ch}
+@media (max-width:760px){.metals{grid-template-columns:minmax(0,1fr)}}
+.note{color:var(--fg2);max-width:60ch;margin-inline:auto;text-align:center}
+
+/* story */
+.story{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:32px 72px;align-items:start}
+.story h2{font:300 var(--t-xl)/1.05 var(--display);text-wrap:balance}
+.story h2 em{color:var(--acc)}
+.story .prose{display:grid;gap:16px;color:var(--fg2);max-width:60ch}
+.story .sig{font:400 italic 1.5rem/1.2 var(--display);color:var(--fg)}
+@media (max-width:860px){.story{grid-template-columns:minmax(0,1fr)}}
+
+/* appointment */
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 72px;align-items:start}
+@media (max-width:860px){.book{grid-template-columns:minmax(0,1fr)}}
+form{display:grid;gap:24px;min-width:0}
+fieldset{border:0;padding:0;margin:0;min-width:0;display:grid;gap:12px}
+legend,.field label{font:500 var(--t-xs)/1.4 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--fg2);padding:0}
+.field{display:grid;gap:6px;min-width:0}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:560px){.trio{grid-template-columns:minmax(0,1fr)}}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;font:inherit;color:var(--fg);background:transparent;border:0;border-bottom:1px solid var(--rule);border-radius:0;padding:10px 0;min-height:46px}
+select{background:var(--room)}
+textarea{min-height:92px;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--fg2);opacity:.6}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:0;border-bottom-color:var(--acc)}
+.seg{display:flex;flex-wrap:wrap;gap:10px}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.seg span{display:block;padding:13px 18px;border:1px solid var(--rule);font:400 var(--t-xs)/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--fg2);transition:border-color .2s,color .2s}
+.seg input:checked+span{border-color:var(--acc);color:var(--fg)}
+.seg input:focus-visible+span{outline:1px solid var(--acc);outline-offset:4px}
+.chosen{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;padding:14px 16px;border:1px solid var(--rule);font-size:var(--t-s);color:var(--fg2)}
+.chosen b{font:400 1.25rem/1.2 var(--display);color:var(--fg)}
+.chosen button{margin-left:auto;background:none;border:0;border-bottom:1px solid var(--acc);padding:0 0 2px;color:var(--fg2);font:500 .64rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+.card{background:var(--field);border:1px solid var(--rule);padding:clamp(22px,3.5vw,40px);display:grid;gap:22px;min-width:0}
+#msg{white-space:pre-wrap;overflow-wrap:anywhere;min-height:9em;font:400 1.3rem/1.5 var(--display);color:var(--fg)}
+.small{font-size:var(--t-s);color:var(--fg2)}
+.sel{user-select:all;-webkit-user-select:all}
+
+/* visit */
+.facts{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.9fr) minmax(0,1.4fr) minmax(0,.55fr);gap:1px;background:var(--rule);border-block:1px solid var(--rule)}
+.facts>div{background:var(--room);padding:30px 24px;display:grid;gap:12px;align-content:start;justify-items:start;min-width:0}
+.facts>div:first-child{padding-left:0}
+.facts h3{font:500 var(--t-xs)/1.4 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--acc)}
+.facts .big{font:400 1.4rem/1.3 var(--display);overflow-wrap:break-word}
+.facts .line{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.mini{background:none;border:0;border-bottom:1px solid var(--acc);padding:0 0 2px;color:var(--fg2);font:500 .64rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+.mini:hover{color:var(--fg)}
+@media (max-width:920px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.facts>div:nth-child(3){padding-left:0}}
+@media (max-width:560px){.facts{grid-template-columns:minmax(0,1fr)}.facts>div{padding-inline:0}}
+
+footer{border-top:1px solid var(--rule)}
+footer .wrap{display:grid;justify-items:center;gap:22px;padding-block:44px 52px;text-align:center}
+footer img{width:150px;height:auto;display:block}
+footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 26px}
+footer nav a{font:400 var(--t-xs)/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--fg2)}
+footer nav a:hover{color:var(--fg)}
+footer small{font-size:var(--t-xs);letter-spacing:.14em;color:var(--fg2)}
+
+/* cart */
+.cartbtn{background:none;border:0;padding:8px 0;font:400 var(--t-xs)/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--fg2);cursor:pointer;display:inline-flex;gap:8px;align-items:center;white-space:nowrap}
+.cartbtn:hover{color:var(--fg)}
+.cartbtn b{font-weight:500;color:var(--champagne);font-variant-numeric:tabular-nums}
+.add{display:block;width:100%;font:500 var(--t-xs)/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;padding:14px 10px;border:1px solid var(--acc);background:transparent;color:var(--fg);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.add:hover{background:var(--acc);color:var(--on-acc)}
+.add.in{border-color:var(--rule);color:var(--fg2)}
+.add.in:hover{background:transparent;color:var(--fg);border-color:var(--acc)}
+.plate .add{width:auto;padding-inline:24px}
+.drawer{position:fixed;inset:0;z-index:30}
+.scrim{position:absolute;inset:0;background:var(--noir);opacity:.68}
+.panel{position:absolute;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--noir-2);color:var(--ivory);border-left:1px solid var(--rule);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.panel:focus{outline:0}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:24px 26px 18px;border-bottom:1px solid var(--rule)}
+.panel-head h2{font:300 2rem/1 var(--display)}
+.lines{overflow-y:auto;padding:4px 26px}
+.line-item{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:start;padding:18px 0;border-bottom:1px solid var(--rule)}
+.line-item:last-child{border-bottom:0}
+.line-item img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--bone)}
+.line-item h3{font:400 1.25rem/1.2 var(--display)}
+.line-item .d{display:grid;gap:8px;min-width:0;justify-items:start}
+.line-item .tag{font:500 .62rem/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--fg2)}
+.qty{display:inline-flex;align-items:center;gap:12px;font-variant-numeric:tabular-nums}
+.qty button{width:28px;height:28px;border:1px solid var(--rule);background:none;color:var(--fg);cursor:pointer;font:400 1rem/1 var(--sans)}
+.empty{padding:36px 0;color:var(--fg2)}
+.panel-foot{padding:20px 26px 26px;border-top:1px solid var(--rule);display:grid;gap:16px}
+.panel-foot .btn{width:100%}
+.sum{display:grid;gap:10px;font-variant-numeric:tabular-nums lining-nums}
+.sum div{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.sum .t{border-top:1px solid var(--rule);padding-top:14px;font:400 1.5rem/1.2 var(--display)}
+.fine{color:var(--fg2);font-size:var(--t-s)}
+
+/* checkout */
+.co{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px 72px;align-items:start}
+.co aside{position:sticky;top:104px}
+@media (max-width:860px){.co{grid-template-columns:minmax(0,1fr)}.co aside{position:static;order:-1}}
+.set{gap:22px}
+.set legend{color:var(--acc);margin-bottom:20px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 24px}
+@media (max-width:560px){.duo{grid-template-columns:minmax(0,1fr)}}
+.step{font:400 1.9rem/1.1 var(--display)}
+.err{color:var(--warn);font-size:var(--t-s)}
+[aria-invalid="true"]{border-bottom-color:var(--warn)!important}
+.co .line-item{grid-template-columns:52px minmax(0,1fr) auto;padding:14px 0}
+#orderText{white-space:pre-wrap;overflow-wrap:anywhere;font-size:var(--t-s);line-height:1.75;font-variant-numeric:tabular-nums lining-nums}
+.back{justify-self:start}
+.stack{display:grid;gap:20px;justify-items:start;min-width:0}
+
+/* sold labels, checkout paths, payment */
+.piece figure,.plate .arch{position:relative}
+.soldmark{position:absolute;left:0;top:14px;background:var(--noir);color:var(--ivory);font:500 .62rem/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;padding:9px 12px 9px 14px}
+.plate .soldmark{top:auto;bottom:28px;left:10px}
+.piece.sold img,.plate.sold img{opacity:.45}
+.add:disabled,.add:disabled:hover{border-color:var(--rule);color:var(--fg2);background:transparent;cursor:default}
+.modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.modes label{position:relative;cursor:pointer;min-width:0}
+.modes input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.modes .m{display:grid;gap:8px;height:100%;padding:22px 24px;border:1px solid var(--rule);align-content:start;transition:border-color .2s,background .2s}
+.modes .m b{font:400 1.6rem/1.1 var(--display)}
+.modes .m span{font-size:var(--t-s);color:var(--fg2)}
+.modes input:checked+.m{border-color:var(--acc);background:var(--field)}
+.modes input:focus-visible+.m{outline:1px solid var(--acc);outline-offset:4px}
+@media (max-width:560px){.modes{grid-template-columns:minmax(0,1fr)}}
+.testnote{border:1px dashed var(--acc);padding:14px 18px;font-size:var(--t-s);color:var(--fg2)}
+.notice{padding:14px 0;color:var(--warn);font-size:var(--t-s);border-bottom:1px solid var(--rule)}
+.due{font:300 clamp(2.4rem,5vw,3.4rem)/1 var(--display);font-variant-numeric:lining-nums}
+#payText{white-space:pre-wrap;overflow-wrap:anywhere;font-size:var(--t-s);line-height:1.75;font-variant-numeric:tabular-nums lining-nums}
+.where{font:400 1.4rem/1.3 var(--display)}
+
+/* shop toolbar, quick view, Square card form */
+.toolbar{display:grid;gap:20px;justify-items:center}
+.tools{display:flex;flex-wrap:wrap;justify-content:center;align-items:end;gap:14px 28px;width:100%}
+.tool{display:grid;gap:2px;min-width:160px}
+.tool.grow{flex:1 1 220px;max-width:340px}
+.tool>span{font:500 var(--t-xs)/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--fg2)}
+input[type=search]{width:100%;font:inherit;color:var(--fg);background:transparent;border:0;border-bottom:1px solid var(--rule);border-radius:0;padding:10px 0;min-height:46px;-webkit-appearance:none;appearance:none}
+input[type=search]:focus-visible{outline:0;border-bottom-color:var(--acc)}
+.count{text-align:center;color:var(--fg2);font-size:var(--t-s)}
+.more{display:flex;justify-content:center}
+.piece .open{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;color:inherit;font:inherit}
+.piece .fig{display:block;position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--bone-2)}
+.piece h3 button{all:unset;cursor:pointer}
+.piece h3 button:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+.price.por{font-style:italic;color:var(--fg2);letter-spacing:.02em}
+a.add{text-align:center;text-decoration:none}
+.defs{display:grid;border-top:1px solid var(--rule);margin:0}
+.defs div{display:grid;grid-template-columns:minmax(0,7.5rem) minmax(0,1fr);gap:4px 18px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.defs dt{font:500 var(--t-xs)/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--fg2);padding-top:.2em}
+.defs dd{margin:0}
+.qv{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px}
+.qv-card{position:relative;width:min(920px,100%);max-height:calc(100% - 8px);overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1px solid var(--rule)}
+.qv-card:focus{outline:0}
+.qv-img{position:relative;background:var(--bone-2);margin:0}
+.qv-img img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:465/600}
+.qv-card.sold .qv-img img{opacity:.45}
+.qv-body{display:grid;gap:20px;align-content:start;padding:clamp(24px,4vw,44px)}
+.qv-body h2{font:300 clamp(1.8rem,3.4vw,2.5rem)/1.08 var(--display);text-wrap:balance;padding-right:56px}
+.qv-price{font-size:1.25rem}
+.qv-x{position:absolute;top:18px;right:20px;z-index:1}
+.qv-actions{display:grid;gap:12px}
+@media (max-width:720px){.qv-card{grid-template-columns:minmax(0,1fr)}.qv-img img{max-height:50vh}}
+#card-container{min-height:92px;margin-top:4px}
+</style>
+
+<div class="util">
+  <div class="wrap">
+    <span class="status"><span data-status>Open daily, 12 pm to 6 pm</span></span>
+    <span>29 St Andrew St, Kensington Market, Toronto</span>
+  </div>
+</div>
+<header class="top">
+  <div class="wrap">
+    <nav class="l" aria-label="Sections">
+      <a href="#collection">Collection</a>
+      <a href="#services">Services</a>
+      <a href="#gold">Gold</a>
+    </nav>
+    <a class="logo" href="#top" aria-label="Yonge Jewelry, back to top"><img src="img/logo.png" alt="Yonge Jewelry" width="738" height="272"></a>
+    <nav class="r" aria-label="More sections">
+      <a href="#house">The house</a>
+      <a href="#visit">Visit</a>
+      <button class="cartbtn" id="cartOpen" type="button" aria-label="Open your cart">Cart <b id="cartCount">0</b></button>
+      <a class="btn small" href="#book">Book</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="label">Kensington Market, Toronto</p>
+        <h1>Fine jewelry, by private <em>appointment</em>.</h1>
+        <p class="lede">Fine jewelry in 18k gold vermeil, 925 Italian sterling silver and surgical steel. Shop online, walk in any day from 12 to 6, or reserve a time for a private viewing.</p>
+        <div class="row">
+          <a class="btn solid" href="#book" data-reason="viewing">Request an appointment</a>
+          <a class="btn" href="#collection">View the collection</a>
+        </div>
+      </div>
+      <figure class="plate" data-card="12">
+        <div class="arch"><span class="soldmark" data-soldmark hidden>Sold</span><img src="img/products/12.jpg" alt="VVS Clarity Lab-Grown Emerald Cut Diamond Necklace: an emerald-cut stone bezel-set in gold on a fine beaded chain" width="465" height="600" data-view="12" style="cursor:pointer"></div>
+        <figcaption>
+          <span class="label" data-herotag>Only one</span>
+          <span class="name" id="heroName">VVS Clarity Lab-Grown Emerald Cut Diamond Necklace</span>
+          <span class="meta" id="heroMeta">925 silver, 18k gold vermeil · $2,850</span>
+          <span class="row" style="justify-content:center;gap:22px;margin-top:8px"><button class="add" type="button" data-add="12">Add to cart</button><a class="enq" href="#book" data-piece="12">Enquire</a></span>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="assure">
+      <div class="wrap">
+        <ul>
+          <li>Shop online or in store</li>
+          <li>Private appointments</li>
+          <li>Bespoke commissions</li>
+          <li>One-year warranty</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="room bone" id="collection">
+    <div class="wrap">
+      <header class="head">
+        <p class="label">The collection</p>
+        <h2>The <em>collection</em>.</h2>
+        <p class="lede" id="collLede">925 silver, 18k gold vermeil and surgical steel, available online and at the shop.</p>
+      </header>
+      <div class="toolbar">
+        <div class="chips" role="group" aria-label="Category">
+          <button class="chip" type="button" data-cat="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-cat="Rings" aria-pressed="false">Rings</button>
+          <button class="chip" type="button" data-cat="Earrings" aria-pressed="false">Earrings</button>
+          <button class="chip" type="button" data-cat="Necklaces" aria-pressed="false">Necklaces</button>
+          <button class="chip" type="button" data-cat="Bracelets" aria-pressed="false">Bracelets</button>
+        </div>
+        <div class="tools">
+          <label class="tool"><span>Metal</span><select id="f-metal"><option value="all">All metals</option><option value="silver">925 silver</option><option value="vermeil">18k gold vermeil</option><option value="steel">Surgical steel</option></select></label>
+          <label class="tool"><span>Sort</span><select id="f-sort"><option value="featured">Featured</option><option value="high">Price, high to low</option><option value="low">Price, low to high</option><option value="name">Name, A to Z</option></select></label>
+          <label class="tool grow"><span>Search</span><input type="search" id="f-search" placeholder="Emerald, hoop, tennis" autocomplete="off"></label>
+        </div>
+      </div>
+      <p class="count" id="resultCount" aria-live="polite"></p>
+      <div class="pieces" id="pieces"></div>
+      <div class="more"><button class="btn" type="button" id="showMore" hidden>Show more</button></div>
+      <p class="center muted">New arrivals appear first on <a class="tl" href="https://www.instagram.com/yongejewelry/" target="_blank" rel="noopener">@yongejewelry</a>.</p>
+    </div>
+  </section>
+
+  <section class="room" id="services">
+    <div class="wrap">
+      <header class="head">
+        <p class="label">Private client services</p>
+        <h2>Service, <em>by appointment</em>.</h2>
+        <p class="lede">Every request is reviewed by the shop before it is confirmed.</p>
+      </header>
+      <div class="services">
+        <article>
+          <h3>Private viewing</h3>
+          <p>Reserve 15 to 60 minutes at the counter to go through the collection, check sizing, or talk over a piece you have in mind.</p>
+          <a class="enq" href="#book" data-reason="viewing">Request a viewing</a>
+        </article>
+        <article>
+          <h3>Bespoke commissions</h3>
+          <p>Custom chains, waist chains and one-off pieces, built around your idea. A 50% deposit is required before work begins.</p>
+          <a class="enq" href="#book" data-reason="bespoke">Start a commission</a>
+        </article>
+        <article>
+          <h3>Gold buying</h3>
+          <p>By appointment only. Your gold is weighed and priced in person against the day's spot price. Bring government-issued ID.</p>
+          <a class="enq" href="#book" data-reason="gold">Book a gold appointment</a>
+        </article>
+        <article>
+          <h3>Aftercare and delivery</h3>
+          <p>A one-year warranty against manufacturing defects on every piece, and exchanges within 30 days. We ship within Canada, to the US and to several European countries.</p>
+          <a class="enq" href="#visit">Contact the shop</a>
+        </article>
+      </div>
+    </div>
+    <hr class="hair" style="margin-block:clamp(64px,9vw,128px)">
+    <div class="wrap" id="gold">
+      <header class="head">
+        <p class="label">Sell your gold</p>
+        <h2>We buy <em>gold</em>.</h2>
+        <p class="lede">By weight, at the day's spot price, quoted in person.</p>
+      </header>
+      <ol class="steps">
+        <li><b>Book an appointment</b><span>Gold buying is by appointment only. We do not take walk-ins.</span></li>
+        <li><b>Bring valid ID</b><span>Government-issued ID is required for every gold purchase.</span></li>
+        <li><b>Receive your quote in person</b><span>We weigh your gold and price it against that day's spot price. We do not quote by phone or email.</span></li>
+      </ol>
+      <div class="scroll">
+        <table class="purity">
+          <caption>Reading the stamp on your gold: how much of the piece is pure gold.</caption>
+          <thead><tr><th scope="col">Karat</th><th scope="col">Stamp</th><th scope="col" colspan="2">Pure gold</th></tr></thead>
+          <tbody>
+            <tr><td>10K</td><td>417</td><td class="b"><span class="bar"><i style="--p:41.7"></i></span></td><td>41.7%</td></tr>
+            <tr><td>14K</td><td>583 or 585</td><td class="b"><span class="bar"><i style="--p:58.3"></i></span></td><td>58.3%</td></tr>
+            <tr><td>18K</td><td>750</td><td class="b"><span class="bar"><i style="--p:75"></i></span></td><td>75.0%</td></tr>
+            <tr><td>22K</td><td>916 or 917</td><td class="b"><span class="bar"><i style="--p:91.7"></i></span></td><td>91.7%</td></tr>
+            <tr><td>24K</td><td>999</td><td class="b"><span class="bar"><i style="--p:99.9"></i></span></td><td>99.9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row" style="justify-content:center"><a class="btn solid" href="#book" data-reason="gold">Book a gold appointment</a></div>
+    </div>
+  </section>
+
+  <section class="room bone" id="house">
+    <div class="wrap">
+      <header class="head">
+        <p class="label">Materials</p>
+        <h2>What each piece is <em>made of</em>.</h2>
+      </header>
+      <div class="metals">
+        <article>
+          <span class="mark">18K</span>
+          <h3>Gold vermeil</h3>
+          <p>A thick 18k gold plate, 2.5 microns, over solid sterling silver. Heavier than standard plating, so it holds its colour for years.</p>
+        </article>
+        <article>
+          <span class="mark">925</span>
+          <h3>Sterling silver</h3>
+          <p>Solid, hallmarked 925 Italian sterling silver. Worn bare, or used as the base under our vermeil.</p>
+        </article>
+        <article>
+          <span class="mark">Steel</span>
+          <h3>Surgical steel</h3>
+          <p>A full line of rings, chains and studs in surgical steel.</p>
+        </article>
+      </div>
+      <p class="note">Stones are sourced worldwide, from countries including Australia, Ethiopia and Afghanistan. Each is set by hand, and every piece is checked under a loupe before it leaves the bench.</p>
+      <hr class="hair">
+      <div class="story">
+        <div style="display:grid;gap:18px">
+          <p class="label">The house</p>
+          <h2>Started on Yonge. Settled in <em>Kensington</em>.</h2>
+        </div>
+        <div class="prose">
+          <p>Christopher Adams grew up in Toronto's Yonge Street corridor and started his first business at 16. He began by planning events that brought young people in the city together, then started sourcing, designing and selling jewelry at pop-ups and city markets.</p>
+          <p>The first storefront opened in Kensington Market, and the people of the neighbourhood have shaped the work ever since. His collections draw on travel, culture, family and community.</p>
+          <p class="sig">Christopher Adams</p>
+          <p class="label">Founder and owner, Forever Yonge Canada Inc.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="room" id="book">
+    <div class="wrap">
+      <header class="head">
+        <p class="label">Appointments</p>
+        <h2>Request a <em>private</em> appointment.</h2>
+        <p class="lede">Appointments are arranged by text. Fill this in and your request is written for you, ready to send.</p>
+      </header>
+      <div class="book">
+        <form id="bookForm" novalidate>
+          <fieldset>
+            <legend>Type of appointment</legend>
+            <div class="seg">
+              <label><input type="radio" name="reason" id="r-viewing" value="viewing" checked><span>Private viewing</span></label>
+              <label><input type="radio" name="reason" id="r-bespoke" value="bespoke"><span>Bespoke</span></label>
+              <label><input type="radio" name="reason" id="r-gold" value="gold"><span>Gold buying</span></label>
+            </div>
+          </fieldset>
+          <p class="chosen" id="chosen" hidden><span>Enquiring about</span><b id="chosenName"></b><button type="button" id="chosenClear">Remove</button></p>
+          <div class="field"><label for="f-name">Your name</label><input type="text" id="f-name" autocomplete="name"></div>
+          <div class="trio">
+            <div class="field"><label for="f-date">Preferred day</label><input type="date" id="f-date"></div>
+            <div class="field"><label for="f-time">Time</label><select id="f-time"></select></div>
+            <div class="field"><label for="f-len">Length</label><select id="f-len"></select></div>
+          </div>
+          <div class="field"><label for="f-notes" id="notesLabel">Anything we should know? (optional)</label><textarea id="f-notes"></textarea></div>
+        </form>
+        <div class="card">
+          <p class="label">Your request</p>
+          <div id="msg" tabindex="0" aria-live="polite"></div>
+          <div class="row">
+            <a class="btn solid" id="textShop" href="sms:+14372126273">Text the shop</a>
+            <button class="btn" type="button" id="copyMsg">Copy request</button>
+          </div>
+          <p class="small">Text the shop opens your messaging app with this request addressed to <span class="sel" data-phone>437-212-6273</span>. You press send. If nothing opens, copy the request and text it to that number. Your appointment is set once the shop replies to confirm.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="room" id="visit" style="padding-top:0">
+    <div class="wrap">
+      <header class="head">
+        <p class="label">Visit</p>
+        <h2>29 St Andrew Street, <em>Kensington Market</em>.</h2>
+      </header>
+      <div class="facts">
+        <div>
+          <h3>Address</h3>
+          <p class="big" id="addr">29 St Andrew St, Unit B<br>Toronto, ON M5T 1K7</p>
+          <div class="line">
+            <button class="mini" type="button" data-copy="29 St Andrew St, Unit B, Toronto, ON M5T 1K7">Copy</button>
+            <a class="mini" style="text-decoration:none" href="https://www.google.com/maps/search/?api=1&query=29+St+Andrew+St+Unit+B+Toronto+ON+M5T+1K7" target="_blank" rel="noopener">Google Maps</a>
+          </div>
+        </div>
+        <div>
+          <h3>Hours</h3>
+          <p class="big">Open daily<br>12 pm to 6 pm</p>
+          <p class="status small"><span data-status>Seven days a week</span></p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <div class="line"><p class="big sel" data-phone>437-212-6273</p><button class="mini" type="button" data-copy="437-212-6273" data-copy-phone>Copy</button><a class="mini" style="text-decoration:none" id="visitText" href="sms:+14372126273">Text</a></div>
+          <div class="line"><p class="big sel">info@yongejewelry.com</p><button class="mini" type="button" data-copy="info@yongejewelry.com">Copy</button></div>
+        </div>
+        <div>
+          <h3>Follow</h3>
+          <p class="big"><a class="tl" href="https://www.instagram.com/yongejewelry/" target="_blank" rel="noopener">Instagram</a></p>
+          <p class="big"><a class="tl" href="https://www.tiktok.com/@yonge.jewelry" target="_blank" rel="noopener">TikTok</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="room" id="checkoutView" hidden>
+  <div class="wrap">
+    <a class="enq back" href="#collection" data-shop>Back to the collection</a>
+    <header class="head">
+      <p class="label">Checkout</p>
+      <h2>Your <em>order</em>.</h2>
+    </header>
+    <p class="err" id="coNotice" role="status" hidden></p>
+    <div class="modes" id="coModes" role="radiogroup" aria-label="How would you like to continue?">
+      <label><input type="radio" name="mode" id="m-online" value="online" checked><span class="m"><b>Buy online</b><span>Pay online with Square and we ship it to you. Stock updates as soon as payment goes through.</span></span></label>
+      <label><input type="radio" name="mode" id="m-store" value="store"><span class="m"><b>See it in store</b><span>No checkout and no payment. Look at the piece at the counter first. It stays available until someone buys it.</span></span></label>
+    </div>
+    <div class="co" id="coMain">
+      <form id="coForm" novalidate>
+        <fieldset class="set">
+          <legend>Contact</legend>
+          <div class="field"><label for="co-name">Full name</label><input type="text" id="co-name" autocomplete="name"></div>
+          <div class="duo">
+            <div class="field"><label for="co-email">Email</label><input type="email" id="co-email" autocomplete="email"></div>
+            <div class="field"><label for="co-phone">Phone (optional)</label><input type="tel" id="co-phone" autocomplete="tel"></div>
+          </div>
+        </fieldset>
+        <fieldset class="set">
+          <legend>Ship to</legend>
+          <div class="duo">
+            <div class="field"><label for="co-country">Country</label><select id="co-country" autocomplete="country"><option value="CA">Canada</option><option value="US">United States</option><optgroup label="Europe"><option value="AT">Austria</option><option value="BE">Belgium</option><option value="DK">Denmark</option><option value="FI">Finland</option><option value="FR">France</option><option value="DE">Germany</option><option value="GR">Greece</option><option value="IE">Ireland</option><option value="IT">Italy</option><option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="ES">Spain</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="GB">United Kingdom</option></optgroup></select></div>
+            <div class="field" id="wrap-province"><label for="co-province">Province or territory</label><select id="co-province"></select></div>
+            <div class="field" id="wrap-state" hidden><label for="co-state">State</label><input type="text" id="co-state" autocomplete="address-level1"></div>
+          </div>
+          <div class="field"><label for="co-address">Street address</label><input type="text" id="co-address" autocomplete="street-address"></div>
+          <div class="duo">
+            <div class="field"><label for="co-city">City</label><input type="text" id="co-city" autocomplete="address-level2"></div>
+            <div class="field"><label for="co-postal">Postal or ZIP code</label><input type="text" id="co-postal" autocomplete="postal-code"></div>
+          </div>
+        </fieldset>
+        <fieldset class="set">
+          <legend>Payment</legend>
+          <p class="fine">Online orders are paid online through Square. Card details go straight to Square and are never stored on this site.</p>
+        </fieldset>
+        <p class="err" id="coErr" role="alert" hidden></p>
+        <div class="row"><button class="btn solid" type="submit">Continue to payment</button></div>
+      </form>
+      <aside class="card" aria-label="Order summary">
+        <p class="label">Order summary</p>
+        <div id="coLines"></div>
+        <div class="sum" id="coSum"></div>
+        <p class="fine" id="coNote"></p>
+      </aside>
+    </div>
+    <div class="co" id="coStore" hidden>
+      <div class="stack">
+        <h3 class="step">See it in store first.</h3>
+        <p class="muted">Nothing is charged and nothing is reserved. Each piece stays available online until someone buys it.</p>
+        <p><span class="where">29 St Andrew St, Unit B, Kensington Market</span><br><span class="muted">Open daily, 12 pm to 6 pm</span></p>
+        <div class="row">
+          <a class="btn solid" id="storeText" href="sms:+14372126273">Text the shop to book</a>
+          <a class="btn" id="storeBook" href="#book">Choose a day and time</a>
+        </div>
+        <p class="fine">Text the shop opens your messaging app with a request to see these pieces, addressed to <span class="sel" data-phone>437-212-6273</span>. You press send. If nothing opens, text that number yourself.</p>
+      </div>
+      <aside class="card" aria-label="Pieces to see in store">
+        <p class="label">Pieces to see</p>
+        <div id="storeLines"></div>
+      </aside>
+    </div>
+    <div class="co" id="coPay" hidden>
+      <div class="stack">
+        <p class="label">Amount due</p>
+        <p class="due" id="payDue">$0.00</p>
+        <p class="testnote" id="payTest" hidden>Test mode. Square cannot run inside this preview, so no card is asked for and nothing is charged. Completing the test payment updates stock and Sold labels exactly as a real payment will.</p>
+        <div class="stack" id="paySquare" style="justify-items:stretch;gap:10px" hidden><p class="fine">Pay securely with Square. Card details go straight to Square and never touch this site.</p><div id="card-container"></div></div>
+        <p class="testnote" id="payOff" hidden>Online payment is not switched on yet. Go back and choose See it in store, or text the shop to reserve a piece.</p>
+        <p class="err" id="payErr" role="alert" hidden></p>
+        <div class="row">
+          <button class="btn solid" type="button" id="payNow">Complete test payment</button>
+          <button class="btn" type="button" id="payBack">Back</button>
+        </div>
+      </div>
+      <aside class="card" aria-label="Order">
+        <p class="label">Order</p>
+        <div id="payText"></div>
+      </aside>
+    </div>
+    <div class="stack" id="coEmpty" style="justify-items:center" hidden>
+      <p class="muted">Your cart is empty.</p>
+      <a class="btn" href="#collection" data-shop>Browse the collection</a>
+    </div>
+    <div class="co" id="coDone" hidden>
+      <div class="stack">
+        <h3 class="step">Thank you. Your order is confirmed.</h3>
+        <p class="muted">Your order is in. Any piece that is now sold out shows as Sold on the site.</p>
+        <p><a class="tl" id="receiptLink" href="#" target="_blank" rel="noopener" hidden>View your Square receipt</a></p>
+        <p class="testnote" id="doneTest">Test order. Square cannot run inside this preview, so no payment was taken.</p>
+        <p class="fine" id="doneLocal" hidden>The Sold labels could not be saved for everyone, so they are kept on this device only.</p>
+        <div class="row">
+          <button class="btn solid" type="button" id="copyOrder">Copy order</button>
+          <a class="btn" href="#collection" data-shop>Back to the collection</a>
+        </div>
+      </div>
+      <div class="card"><p class="label">Order</p><div id="orderText" tabindex="0"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="qv" id="qv" hidden>
+  <div class="scrim" data-qvclose></div>
+  <div class="qv-card bone" role="dialog" aria-modal="true" aria-labelledby="qvName" tabindex="-1">
+    <button class="mini qv-x" type="button" data-qvclose>Close</button>
+    <figure class="qv-img"><img id="qvImg" alt="" width="465" height="600"><span class="soldmark" id="qvSold" hidden>Sold</span></figure>
+    <div class="qv-body">
+      <p class="label" id="qvTag"></p>
+      <h2 id="qvName"></h2>
+      <p class="price qv-price" id="qvPrice"></p>
+      <dl class="defs">
+        <div><dt>Material</dt><dd id="qvMat"></dd></div>
+        <div><dt>Category</dt><dd id="qvCat"></dd></div>
+        <div><dt>Availability</dt><dd id="qvStock"></dd></div>
+      </dl>
+      <div class="qv-actions">
+        <button class="add" type="button" id="qvAdd" data-add="">Add to cart</button>
+        <a class="btn" id="qvText" href="sms:+14372126273">Text the shop about it</a>
+        <a class="enq" id="qvEnq" href="#book" data-piece="" style="justify-self:start">Request an appointment</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="drawer" id="cart" hidden>
+  <div class="scrim" data-close></div>
+  <aside class="panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1">
+    <div class="panel-head"><h2 id="cartTitle">Your cart</h2><button class="mini" type="button" data-close>Close</button></div>
+    <div class="lines" id="cartLines"></div>
+    <div class="panel-foot" id="cartFoot">
+      <div class="sum"><div class="t"><span>Subtotal</span><span id="cartSub">$0.00</span></div></div>
+      <p class="fine">Shipping and tax are worked out at checkout. Seeing a piece in store costs nothing and reserves nothing.</p>
+      <button class="btn solid" type="button" id="toCheckout">Buy online</button>
+      <button class="btn" type="button" id="toStore">See it in store instead</button>
+      <button class="mini" type="button" data-close style="justify-self:center">Continue browsing</button>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo.png" alt="Yonge Jewelry" width="738" height="272">
+    <nav aria-label="Footer">
+      <a href="#collection">Collection</a><a href="#services">Services</a><a href="#gold">Gold</a><a href="#house">The house</a><a href="#book">Appointments</a><a href="#visit">Visit</a>
+    </nav>
+    <small>© 2026 Yonge Jewelry. Forever Yonge Canada Inc.</small>
+    <button class="mini" type="button" id="resetSold" hidden>Reset test sales</button>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ================= settings ================= */
+  var SHOP_PHONE='437-212-6273';      /* the shop's number as listed on yongejewelry.com */
+  var SHOP_SMS='+14372126273';        /* the same number in dialling form, used by the Text buttons */
+  var SQUARE={
+    applicationId:'',                 /* Square Developer Console > your app > Credentials (sandbox-sq0idb-... while testing) */
+    locationId:'',                    /* Square Developer Console > your app > Locations */
+    environment:'sandbox',            /* change to 'production' with live credentials */
+    apiBase:''                        /* your payments Worker address, e.g. https://yonge-payments.yourname.workers.dev */
+  };
+  var API=String(SQUARE.apiBase||'').replace(/\/+$/,'');
+  var HERO_ID=12;
+  var PAGE_SIZE=24;
+  /* Inside the Claude preview Square cannot load, so checkout runs as a clearly labelled test. */
+  var IN_PREVIEW=!!(window.claude&&typeof window.claude.use==='function');
+  var PAY_MODE=IN_PREVIEW?'test':((SQUARE.applicationId&&SQUARE.locationId&&API)?'square':'off');
+
+  var $=function(id){return document.getElementById(id)};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function smsHref(body){return 'sms:'+SHOP_SMS+(body?'?&body='+encodeURIComponent(body):'')}
+  function uuid(){try{return crypto.randomUUID()}catch(e){return 'k'+Date.now().toString(36)+Math.random().toString(36).slice(2,12)}}
+  document.querySelectorAll('[data-phone]').forEach(function(el){el.textContent=SHOP_PHONE});
+  document.querySelectorAll('[data-copy-phone]').forEach(function(el){el.setAttribute('data-copy',SHOP_PHONE)});
+  $('visitText').href=smsHref('');
+
+  /* ================= catalogue (products.json, built from the owner's product sheet) ================= */
+  var PRODUCTS=[],byId={};
+  var MAT={'925 Silver':'925 silver','925 Silver & 18K Vermeil':'925 silver, 18k gold vermeil','925 Silver & 18K Rose Gold Vermeil':'925 silver, 18k rose gold vermeil','18K Gold Vermeil':'18k gold vermeil','Surgical Steel':'Surgical steel','Surgical Steel & 18K Vermeil':'Surgical steel, 18k gold vermeil','Fine Jewelry':'Fine jewelry'};
+  function matLabel(p){return MAT[p.material]||p.material||''}
+  function metalOf(p){var m=p.material||'';return {silver:/925/.test(m),vermeil:/vermeil/i.test(m),steel:/steel/i.test(m)}}
+  function imgOf(p){return 'img/products/'+p.id+'.jpg'}
+  function money(n){return '$'+Number(n).toLocaleString('en-CA')}
+  function money2(n){return '$'+Number(n).toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2})}
+  function priceText(p){return p.price!=null?money(p.price):'Price on request'}
+
+  /* ================= stock: units sold online, from the shared store / Square / this device ================= */
+  var soldRemote={},soldLocal={},sold={},buying={},db=null,cartNotice='';
+  try{var sl=JSON.parse(localStorage.getItem('yj-stock')||'{}');Object.keys(sl).forEach(function(k){if(sl[k]>0)soldLocal[k]=sl[k]|0})}catch(e){}
+  function saveSoldLocal(){try{localStorage.setItem('yj-stock',JSON.stringify(soldLocal))}catch(e){}}
+  function merge(){sold={};[soldRemote,soldLocal].forEach(function(m){Object.keys(m).forEach(function(k){sold[k]=(sold[k]||0)+(m[k]||0)})})}
+  function remaining(p){return Math.max(0,(p.qty||0)-(sold[p.id]||0))}
+  function stockLabel(p){var r=remaining(p);return r<=0?'Sold':(r===1?'Only one':(r<=3?'Only '+r+' left':''))}
+  function tagline(p){var l=stockLabel(p);return (l?'<b>'+l+'</b> · ':'')+esc(matLabel(p))}
+
+  /* ================= cart ================= */
+  var cart={};
+  function restoreCart(){try{var c=JSON.parse(localStorage.getItem('yj-cart')||'{}');Object.keys(c).forEach(function(k){var p=byId[k];if(p&&p.price!=null&&c[k]>0)cart[k]=Math.min(c[k]|0,Math.max(1,p.qty))})}catch(e){}}
+  function save(){try{localStorage.setItem('yj-cart',JSON.stringify(cart))}catch(e){}}
+  function inCart(){return PRODUCTS.filter(function(p){return cart[p.id]>0})}
+  function count(){return inCart().reduce(function(a,p){return a+cart[p.id]},0)}
+  function subtotal(){return inCart().reduce(function(a,p){return a+cart[p.id]*p.price},0)}
+
+  /* ================= shop grid ================= */
+  var grid=$('pieces'),view={cat:'all',metal:'all',sort:'featured',q:'',shown:PAGE_SIZE};
+  function filtered(){
+    var q=view.q.trim().toLowerCase();
+    var list=PRODUCTS.filter(function(p){
+      if(view.cat!=='all'&&p.category!==view.cat) return false;
+      if(view.metal!=='all'&&!metalOf(p)[view.metal]) return false;
+      if(q&&(p.name+' '+matLabel(p)+' '+p.category).toLowerCase().indexOf(q)<0) return false;
+      return true;
+    });
+    var s=view.sort;
+    return list.sort(function(a,b){
+      if(s==='name') return a.name.localeCompare(b.name);
+      if(s==='featured'){var ra=remaining(a)>0,rb=remaining(b)>0;if(ra!==rb) return ra?-1:1}
+      var pa=a.price,pb=b.price;
+      if(pa==null||pb==null) return pa==null&&pb==null?a.id-b.id:(pa==null?1:-1);
+      return (s==='low'?pa-pb:pb-pa)||a.id-b.id;
+    });
+  }
+  function addButton(p){
+    if(p.price==null) return '<a class="add" href="#book" data-piece="'+p.id+'">Ask about price</a>';
+    return '<button class="add" type="button" data-add="'+p.id+'">Add to cart</button>';
+  }
+  function cardHTML(p){
+    var out=remaining(p)<=0;
+    return '<article class="piece'+(out?' sold':'')+'" data-card="'+p.id+'">'+
+      '<button class="open" type="button" data-view="'+p.id+'" aria-label="View '+esc(p.name)+'"><span class="fig"><img src="'+imgOf(p)+'" alt="'+esc(p.name)+'" width="465" height="600" loading="lazy"><span class="soldmark" data-soldmark'+(out?'':' hidden')+'>Sold</span></span></button>'+
+      '<p class="tag" data-tagline>'+tagline(p)+'</p>'+
+      '<h3><button type="button" data-view="'+p.id+'">'+esc(p.name)+'</button></h3>'+
+      '<div class="foot"><span class="price'+(p.price==null?' por':'')+'">'+priceText(p)+'</span><a class="enq" href="#book" data-piece="'+p.id+'"'+(out?' hidden':'')+'>Enquire</a></div>'+
+      addButton(p)+'</article>';
+  }
+  function renderGrid(){
+    var list=filtered(),shown=Math.min(view.shown,list.length);
+    grid.innerHTML=list.length?list.slice(0,shown).map(cardHTML).join(''):'<p class="center muted" style="grid-column:1/-1">No pieces match. Try another metal or a different word.</p>';
+    $('resultCount').textContent=list.length?'Showing '+shown+' of '+list.length+' pieces':'';
+    $('showMore').hidden=shown>=list.length;
+    paintButtons();
+  }
+  function paintHero(){
+    var p=byId[HERO_ID],el=document.querySelector('.plate[data-card="'+HERO_ID+'"]'); if(!p||!el) return;
+    var out=remaining(p)<=0;
+    el.classList.toggle('sold',out);
+    el.querySelector('[data-soldmark]').hidden=!out;
+    el.querySelector('[data-herotag]').textContent=stockLabel(p)||'In stock';
+    el.querySelector('[data-piece]').hidden=out;
+  }
+  function paintButtons(){
+    document.querySelectorAll('[data-add]').forEach(function(b){
+      var p=byId[b.getAttribute('data-add')]; if(!p) return;
+      var r=remaining(p),c=cart[p.id]||0,full=r>0&&c>=r;
+      b.disabled=r<=0; b.textContent=r<=0?'Sold':(full?'In your cart':'Add to cart'); b.classList.toggle('in',full);
+    });
+  }
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click',function(){
+      view.cat=c.getAttribute('data-cat'); view.shown=PAGE_SIZE;
+      document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false')});
+      renderGrid();
+    });
+  });
+  $('f-metal').addEventListener('change',function(){view.metal=this.value;view.shown=PAGE_SIZE;renderGrid()});
+  $('f-sort').addEventListener('change',function(){view.sort=this.value;renderGrid()});
+  var qTimer=null;
+  $('f-search').addEventListener('input',function(){var v=this.value;clearTimeout(qTimer);qTimer=setTimeout(function(){view.q=v;view.shown=PAGE_SIZE;renderGrid()},150)});
+  $('showMore').addEventListener('click',function(){view.shown+=PAGE_SIZE;renderGrid()});
+
+  /* ================= quick view ================= */
+  var qv=$('qv'),qvCard=qv.querySelector('.qv-card'),qvFocus=null,qvId=null;
+  function openView(id){
+    var p=byId[id]; if(!p) return;
+    qvId=id; if(qv.hidden) qvFocus=document.activeElement;
+    $('qvImg').src=imgOf(p); $('qvImg').alt=p.name;
+    $('qvName').textContent=p.name; $('qvCat').textContent=p.category; $('qvMat').textContent=matLabel(p);
+    paintView(); qv.hidden=false; document.documentElement.style.overflow='hidden'; qvCard.focus();
+  }
+  function paintView(){
+    var p=byId[qvId]; if(!p||qv.hidden&&qvId==null) return;
+    var r=remaining(p),out=r<=0;
+    $('qvTag').textContent=stockLabel(p)||'In stock';
+    $('qvPrice').textContent=priceText(p); $('qvPrice').classList.toggle('por',p.price==null);
+    $('qvStock').textContent=out?'Sold':(r===1?'One in stock':r+' in stock')+', online and at 29 St Andrew St';
+    $('qvSold').hidden=!out; qvCard.classList.toggle('sold',out);
+    var add=$('qvAdd'); add.hidden=p.price==null; add.setAttribute('data-add',p.id);
+    $('qvEnq').setAttribute('data-piece',p.id); $('qvEnq').hidden=out;
+    $('qvText').hidden=out;
+    $('qvText').href=smsHref('Hello Yonge Jewelry, could I see the '+p.name+(p.price!=null?' ('+money(p.price)+')':'')+' in store?');
+    paintButtons();
+  }
+  function closeView(){if(qv.hidden) return;qv.hidden=true;qvId=null;document.documentElement.style.overflow='';try{if(qvFocus&&document.contains(qvFocus)) qvFocus.focus()}catch(e){}}
+
+  /* ================= checkout ================= */
+  var TAX={AB:.05,BC:.12,MB:.12,NB:.15,NL:.15,NS:.14,NT:.05,NU:.05,ON:.13,PE:.15,QC:.14975,SK:.11,YT:.05};
+  var PROV={AB:'Alberta',BC:'British Columbia',MB:'Manitoba',NB:'New Brunswick',NL:'Newfoundland and Labrador',NS:'Nova Scotia',NT:'Northwest Territories',NU:'Nunavut',ON:'Ontario',PE:'Prince Edward Island',QC:'Quebec',SK:'Saskatchewan',YT:'Yukon'};
+  var SHIP={ON:12,CA:18,US:28,INTL:45};
+  var mainEl=document.querySelector('main'),coView=$('checkoutView'),drawer=$('cart'),panel=drawer.querySelector('.panel'),lastFocus=null;
+  var coForm=$('coForm'),coCountry=$('co-country'),coProv=$('co-province'),coState='form',pending=null;
+  function zoneOf(code,prov){return code==='CA'?(prov==='ON'?'ON':'CA'):(code==='US'?'US':'INTL')}
+  function totals(sub,code,prov){
+    var z=zoneOf(code,prov),base=SHIP[z],ship,free=null;
+    if(z==='ON') ship=0; else {free=base<=20?150:250;ship=sub>=free?0:base}
+    var rate=code==='CA'?(TAX[prov]||.13):0,tax=Math.round(((sub+ship)*rate+1e-9)*100)/100;
+    return {ship:ship,free:free,rate:rate,tax:tax,total:Math.round((sub+ship+tax)*100)/100};
+  }
+  function taxName(code,prov,rate){return code==='CA'?'Tax ('+PROV[prov]+', '+(+(rate*100).toFixed(3))+'%)':(code==='US'?'Tax':'Tax and duties')}
+  function taxValue(code,t){return code==='CA'?money2(t.tax):(code==='US'?'Not collected here':'May apply on delivery')}
+  function lineHTML(p,edit){
+    var q=cart[p.id],r=remaining(p),extra='';
+    if(edit){
+      if(r>1) extra+='<span class="qty"><button type="button" data-qty="-1" data-id="'+p.id+'" aria-label="One fewer">−</button><span>'+q+'</span><button type="button" data-qty="1" data-id="'+p.id+'" aria-label="One more"'+(q>=r?' disabled':'')+'>+</button></span>';
+      extra+='<button class="mini" type="button" data-remove="'+p.id+'">Remove</button>';
+    }else if(q>1) extra='<span class="tag">Quantity '+q+'</span>';
+    return '<div class="line-item"><img src="'+imgOf(p)+'" alt="" width="64" height="80"><div class="d"><h3>'+esc(p.name)+'</h3><span class="tag">'+esc(matLabel(p))+'</span>'+extra+'</div><span class="price">'+money(p.price*q)+'</span></div>';
+  }
+  function dest(){var c=coCountry.value;return {code:c,prov:c==='CA'?coProv.value:'',name:coCountry.options[coCountry.selectedIndex].text}}
+  function mode(){return $('m-store').checked?'store':'online'}
+  function storeMessage(items){
+    return 'Hello Yonge Jewelry, I would like to book a time to see '+(items.length>1?'these pieces':'this piece')+' in store: '+
+      items.map(function(p){return p.name+' ('+money(p.price)+')'}).join(', ')+'.';
+  }
+  function renderCheckout(){
+    var items=inCart(),has=items.length>0,st=coState;
+    if(st==='pay'&&!pending) st='form';
+    if(st!=='done'&&!has) st='empty';
+    var m=mode();
+    $('coModes').hidden=st!=='form';
+    $('coMain').hidden=!(st==='form'&&m==='online');
+    $('coStore').hidden=!(st==='form'&&m==='store');
+    $('coPay').hidden=st!=='pay';
+    $('coDone').hidden=st!=='done';
+    $('coEmpty').hidden=st!=='empty';
+    $('coNotice').hidden=!cartNotice||st==='done'; $('coNotice').textContent=cartNotice;
+    if(!has) return;
+    var d=dest(),sub=subtotal(),t=totals(sub,d.code,d.prov),lines=items.map(function(p){return lineHTML(p,false)}).join('');
+    $('coLines').innerHTML=lines; $('storeLines').innerHTML=lines;
+    $('coSum').innerHTML='<div><span>Subtotal</span><span>'+money2(sub)+'</span></div>'+
+      '<div><span>Shipping</span><span>'+(t.ship?money2(t.ship):'Free')+'</span></div>'+
+      '<div><span>'+taxName(d.code,d.prov,t.rate)+'</span><span>'+taxValue(d.code,t)+'</span></div>'+
+      '<div class="t"><span>Total</span><span>'+money2(t.total)+'</span></div>';
+    $('coNote').textContent=!t.free?'Shipping is free within Ontario.':(t.ship?'Add '+money2(t.free-sub)+' more for free shipping.':'Shipping is free on orders of $'+t.free+' or more.');
+    $('storeText').href=smsHref(storeMessage(items));
+  }
+  function render(){
+    var items=inCart();
+    $('cartCount').textContent=count();
+    $('cartLines').innerHTML=(cartNotice?'<p class="notice">'+esc(cartNotice)+'</p>':'')+(items.length?items.map(function(p){return lineHTML(p,true)}).join(''):'<p class="empty">Your cart is empty.</p>');
+    $('cartFoot').hidden=!items.length;
+    $('cartSub').textContent=money2(subtotal());
+    paintButtons();
+    if(!coView.hidden) renderCheckout();
+  }
+  function stockChanged(){
+    merge();
+    var gone=[];
+    Object.keys(cart).forEach(function(id){
+      var p=byId[id]; if(!p||buying[id]) return;
+      var r=remaining(p);
+      if(r<=0){gone.push(p.name);delete cart[id]} else if(cart[id]>r) cart[id]=r;
+    });
+    if(gone.length){cartNotice='Just sold and removed from your cart: '+gone.join(', ')+'.';save()}
+    renderGrid(); paintHero(); if(!qv.hidden) paintView(); render();
+  }
+  function openCart(){if(drawer.hidden) lastFocus=document.activeElement;drawer.hidden=false;document.documentElement.style.overflow='hidden';panel.focus()}
+  function closeCart(){if(drawer.hidden) return;drawer.hidden=true;document.documentElement.style.overflow='';try{if(lastFocus&&document.contains(lastFocus)) lastFocus.focus()}catch(e){}}
+  function showShop(){coView.hidden=true;mainEl.hidden=false;if(coState==='done') coState='form'}
+  function showCheckout(m){closeCart();closeView();coState='form';pending=null;$(m==='store'?'m-store':'m-online').checked=true;mainEl.hidden=true;coView.hidden=false;renderCheckout();window.scrollTo(0,0)}
+  Object.keys(PROV).sort(function(a,b){return PROV[a]<PROV[b]?-1:1}).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=PROV[k];coProv.appendChild(o)});
+  coProv.value='ON';
+  function syncDest(){var c=coCountry.value;$('wrap-province').hidden=c!=='CA';$('wrap-state').hidden=c!=='US';renderCheckout()}
+  coCountry.addEventListener('change',syncDest);
+  coProv.addEventListener('change',renderCheckout);
+  $('m-online').addEventListener('change',renderCheckout);
+  $('m-store').addEventListener('change',renderCheckout);
+  coForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var d=dest(),miss=[],f={name:$('co-name'),email:$('co-email'),phone:$('co-phone'),state:$('co-state'),addr:$('co-address'),city:$('co-city'),postal:$('co-postal')};
+    Object.keys(f).forEach(function(k){f[k].removeAttribute('aria-invalid')});
+    function need(el,label,ok){var v=el.value.trim(),good=ok?ok(v):!!v;if(!good){el.setAttribute('aria-invalid','true');miss.push([el,label])}}
+    need(f.name,'your full name');
+    need(f.email,'a valid email address',function(v){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)});
+    if(d.code==='US') need(f.state,'your state');
+    need(f.addr,'your street address'); need(f.city,'your city'); need(f.postal,'your postal or ZIP code');
+    var err=$('coErr');
+    if(miss.length){
+      var labels=miss.map(function(m){return m[1]});
+      err.textContent='To continue, add '+(labels.length>1?labels.slice(0,-1).join(', ')+' and '+labels[labels.length-1]:labels[0])+'.';
+      err.hidden=false; miss[0][0].focus(); return;
+    }
+    err.hidden=true;
+    var items=inCart(),sub=subtotal(),t=totals(sub,d.code,d.prov),day='',abc='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',code='';
+    try{var n=torontoNow();day=iso(n.y,n.m,n.d).replace(/-/g,'')}catch(e2){}
+    for(var i=0;i<4;i++) code+=abc.charAt(Math.floor(Math.random()*abc.length));
+    var ref='YJ-'+(day?day+'-':'')+code;
+    var region=d.code==='CA'?d.prov:(d.code==='US'?f.state.value.trim():'');
+    var buyer={name:f.name.value.trim(),email:f.email.value.trim(),phone:f.phone.value.trim(),address:f.addr.value.trim(),city:f.city.value.trim(),region:region,postal:f.postal.value.trim(),country:d.code};
+    var out=['Order '+ref,''];
+    items.forEach(function(p){out.push(cart[p.id]+' × '+p.name+' (#'+p.id+', '+matLabel(p)+'), '+money2(p.price*cart[p.id]))});
+    out.push('','Subtotal: '+money2(sub),'Shipping: '+(t.ship?money2(t.ship):'Free'),taxName(d.code,d.prov,t.rate)+': '+taxValue(d.code,t),'Total: '+money2(t.total),'','Ship to:',buyer.name,buyer.address,buyer.city+(region?', '+region:'')+'  '+buyer.postal,d.name,'','Email: '+buyer.email);
+    if(buyer.phone) out.push('Phone: '+buyer.phone);
+    pending={ref:ref,items:items.map(function(p){return {id:p.id,qty:cart[p.id]}}),text:out.join('\n'),total:t.total,buyer:buyer,dest:{country:d.code,province:d.prov}};
+    cartNotice=''; coState='pay'; preparePay(); renderCheckout(); window.scrollTo(0,0);
+  });
+
+  /* ================= payment ================= */
+  var payBtn=$('payNow');
+  function payLabel(){return PAY_MODE==='test'?'Complete test payment':'Pay '+money2(pending?pending.total:0)}
+  function showPayErr(msg){var e=$('payErr');e.textContent=msg;e.hidden=!msg}
+  function preparePay(){
+    $('payDue').textContent=money2(pending.total); $('payText').textContent=pending.text;
+    $('payTest').hidden=PAY_MODE!=='test'; $('paySquare').hidden=PAY_MODE!=='square'; $('payOff').hidden=PAY_MODE!=='off';
+    payBtn.hidden=PAY_MODE==='off'; payBtn.disabled=false; payBtn.textContent=payLabel(); showPayErr('');
+    if(PAY_MODE==='square') initCard().catch(function(){});
+  }
+  $('payBack').addEventListener('click',function(){coState='form';renderCheckout()});
+
+  /* --- Square Web Payments SDK: the card form is Square's own secure iframe --- */
+  var sqCard=null,sqLoading=null;
+  function loadSquare(){
+    return new Promise(function(resolve,reject){
+      if(window.Square) return resolve(window.Square);
+      var s=document.createElement('script');
+      s.src=SQUARE.environment==='production'?'https://web.squarecdn.com/v1/square.js':'https://sandbox.web.squarecdn.com/v1/square.js';
+      s.onload=function(){window.Square?resolve(window.Square):reject(new Error('Square did not load'))};
+      s.onerror=function(){reject(new Error('Square did not load'))};
+      document.head.appendChild(s);
+    });
+  }
+  function initCard(){
+    if(sqCard) return Promise.resolve(sqCard);
+    if(sqLoading) return sqLoading;
+    payBtn.disabled=true;
+    sqLoading=loadSquare().then(function(Sq){
+      var payments=Sq.payments(SQUARE.applicationId,SQUARE.locationId);
+      return payments.card({style:{
+        '.input-container':{borderColor:'#30291F',borderRadius:'2px'},
+        '.input-container.is-focus':{borderColor:'#C9A96E'},
+        '.input-container.is-error':{borderColor:'#E3A48F'},
+        'input':{backgroundColor:'#17130F',color:'#F0E9DF',fontSize:'16px'},
+        'input::placeholder':{color:'#ADA395'},
+        '.message-text':{color:'#ADA395'},'.message-icon':{color:'#ADA395'}
+      }});
+    }).then(function(card){
+      return card.attach('#card-container').then(function(){sqCard=card;payBtn.disabled=false;return card});
+    }).catch(function(e){
+      sqLoading=null; payBtn.disabled=false;
+      showPayErr('The card form could not load. Check your connection and try again, or go back and choose See it in store.');
+      throw e;
+    });
+    return sqLoading;
+  }
+  function squarePay(o){
+    var b=o.buyer,parts=b.name.split(/\s+/),given=parts.shift()||b.name,family=parts.join(' ');
+    var details={amount:o.total.toFixed(2),currencyCode:'CAD',intent:'CHARGE',customerInitiated:true,sellerKeyedIn:false,
+      billingContact:{givenName:given,familyName:family,email:b.email,addressLines:[b.address],city:b.city,countryCode:b.country}};
+    if(b.phone) details.billingContact.phone=b.phone;
+    if(b.region) details.billingContact.state=b.region;
+    return initCard().then(function(card){return card.tokenize(details)}).then(function(r){
+      if(!r||r.status!=='OK') throw {user:'Check your card details and try again.'};
+      return fetch(API+'/pay',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({sourceId:r.token,idempotencyKey:uuid(),ref:o.ref,items:o.items,destination:o.dest,buyer:b})});
+    }).then(function(res){
+      return res.json().catch(function(){return {}}).then(function(j){
+        if(res.ok&&j.ok) return {ok:true,receipt:j.receiptUrl||null,total:j.total,ref:j.ref||o.ref};
+        if(res.status===409&&j.soldOut) return {ok:false,soldOut:j.soldOut};
+        throw {user:j.error||'The payment did not go through. Please try again.'};
+      });
+    });
+  }
+
+  /* --- preview test payment: updates stock exactly as a real sale will --- */
+  function claim(id,qty,order){
+    var p=byId[id];
+    if(!db){ if(remaining(p)<qty) return Promise.resolve(false); soldLocal[id]=(soldLocal[id]||0)+qty; saveSoldLocal(); return Promise.resolve(true); }
+    var ref=db.doc('stock/'+id);
+    return ref.acquire({holder:order,ttlMs:8000}).then(function(a){
+      if(!a||!a.acquired) return false;
+      return ref.get().then(function(s){
+        var cur=(s.exists&&s.data()&&+s.data().sold)||0;
+        if(p.qty-cur<qty) return false;
+        return ref.set({sold:cur+qty,at:new Date().toISOString(),test:true}).then(function(){return true});
+      });
+    });
+  }
+  function release(id,qty,order){
+    if(!db){soldLocal[id]=Math.max(0,(soldLocal[id]||0)-qty);saveSoldLocal();return Promise.resolve()}
+    var ref=db.doc('stock/'+id);
+    return ref.acquire({holder:order+'-undo',ttlMs:8000}).then(function(){return ref.get()}).then(function(s){
+      var cur=(s.exists&&s.data()&&+s.data().sold)||0,next=Math.max(0,cur-qty);
+      return next?ref.set({sold:next,at:new Date().toISOString(),test:true}):ref.delete();
+    }).then(function(){},function(){});
+  }
+  function testPay(o){
+    var got=[],taken=[];
+    return o.items.reduce(function(c,it){return c.then(function(){return claim(it.id,it.qty,o.ref).then(function(ok){(ok?got:taken).push(it)})})},Promise.resolve())
+      .then(function(){
+        if(!taken.length) return {ok:true,receipt:null,total:o.total,ref:o.ref};
+        return got.reduce(function(c,it){return c.then(function(){return release(it.id,it.qty,o.ref)})},Promise.resolve())
+          .then(function(){return {ok:false,soldOut:taken.map(function(it){return it.id})}});
+      },function(err){
+        return got.reduce(function(c,it){return c.then(function(){return release(it.id,it.qty,o.ref)})},Promise.resolve()).then(function(){throw err});
+      });
+  }
+  var localOnly=false;
+  payBtn.addEventListener('click',function(){
+    var o=pending; if(!o||payBtn.disabled||PAY_MODE==='off') return;
+    payBtn.disabled=true; payBtn.textContent='Processing'; showPayErr('');
+    o.items.forEach(function(it){buying[it.id]=true});
+    function unlock(){o.items.forEach(function(it){delete buying[it.id]});payBtn.disabled=false;payBtn.textContent=payLabel()}
+    var run=PAY_MODE==='square'?squarePay(o):testPay(o).catch(function(){
+      localOnly=true; o.items.forEach(function(it){soldLocal[it.id]=(soldLocal[it.id]||0)+it.qty}); saveSoldLocal();
+      return {ok:true,receipt:null,total:o.total,ref:o.ref};
+    });
+    run.then(function(r){
+      if(r.ok){
+        o.items.forEach(function(it){delete cart[it.id]}); save();
+        $('orderText').textContent=o.text.replace(/^Order \S+/,'Order '+r.ref)+'\n\n'+(PAY_MODE==='square'?'Paid with Square: '+money2(r.total!=null?r.total:o.total):'Test order: no payment was taken.');
+        var rl=$('receiptLink'); rl.hidden=!r.receipt; if(r.receipt) rl.href=r.receipt;
+        $('doneTest').hidden=PAY_MODE!=='test'; $('doneLocal').hidden=!(PAY_MODE==='test'&&(localOnly||!db));
+        pending=null; coState='done'; unlock(); refreshStock(); stockChanged(); window.scrollTo(0,0); return;
+      }
+      r.soldOut.forEach(function(id){delete cart[id]}); save();
+      cartNotice='Just sold to someone else and removed from your order: '+r.soldOut.map(function(id){return byId[id]?byId[id].name:'#'+id}).join(', ')+'.';
+      pending=null; coState='form'; unlock(); refreshStock(); stockChanged(); window.scrollTo(0,0);
+    }).catch(function(e){
+      unlock(); showPayErr((e&&e.user)||'The payment did not go through. Please try again.');
+    });
+  });
+  $('copyOrder').addEventListener('click',function(){copy($('orderText').textContent,this,$('orderText'))});
+
+  /* ================= clicks ================= */
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeView();closeCart()}});
+  document.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.closest) return; var el,id,p;
+    if((el=t.closest('[data-view]'))){openView(el.getAttribute('data-view'));return}
+    if(t.closest('[data-qvclose]')){closeView();return}
+    if((el=t.closest('[data-add]'))){
+      id=el.getAttribute('data-add'); p=byId[id]; if(!p||p.price==null||remaining(p)<=0) return;
+      cartNotice=''; cart[id]=Math.min(remaining(p),(cart[id]||0)+1); save(); render(); closeView(); openCart(); return;
+    }
+    if((el=t.closest('[data-remove]'))){delete cart[el.getAttribute('data-remove')]; save(); render(); return}
+    if((el=t.closest('[data-qty]'))){id=el.getAttribute('data-id'); p=byId[id]; cart[id]=Math.max(0,Math.min(remaining(p),(cart[id]||0)+(+el.getAttribute('data-qty')))); if(!cart[id]) delete cart[id]; save(); render(); return}
+    if(t.closest('[data-close]')){closeCart(); return}
+    if(t.closest('#cartOpen')){openCart(); return}
+    if(t.closest('#toCheckout')){showCheckout('online'); return}
+    if(t.closest('#toStore')){showCheckout('store'); return}
+    if(t.closest('a[href^="#"]')){closeView(); if(mainEl.hidden) showShop()}
+  });
+
+  /* ================= stock source ================= */
+  var resetBtn=$('resetSold'),resetArmed=0,resetLabel=resetBtn.textContent;
+  resetBtn.addEventListener('click',function(){
+    if(Date.now()-resetArmed>4000){resetArmed=Date.now();resetBtn.textContent='Press again to reset';setTimeout(function(){resetBtn.textContent=resetLabel},4000);return}
+    resetArmed=0; resetBtn.textContent=resetLabel; soldLocal={}; saveSoldLocal();
+    var pr=Promise.resolve();
+    if(db) pr=db.collection('stock').get().then(function(snap){return snap.docs.reduce(function(c,d){return c.then(function(){return db.doc('stock/'+d.id).delete()})},Promise.resolve())});
+    pr.then(stockChanged,stockChanged);
+  });
+  function refreshStock(){
+    if(PAY_MODE!=='square') return;
+    fetch(API+'/stock',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){
+      if(j&&j.sold){soldRemote={};Object.keys(j.sold).forEach(function(k){soldRemote[k]=+j.sold[k]||0});stockChanged()}
+    }).catch(function(){});
+  }
+  function startStock(){
+    if(PAY_MODE==='square'){refreshStock();setInterval(refreshStock,60000);return}
+    if(!IN_PREVIEW) return;
+    window.claude.use('db').then(function(d){
+      if(!d){resetBtn.hidden=false;return}
+      db=d;
+      try{
+        db.collection('stock').onSnapshot(function(snap){
+          var next={};
+          snap.docs.forEach(function(doc){var x=doc.data();if(byId[doc.id]&&x&&+x.sold>0) next[doc.id]=+x.sold});
+          soldRemote=next; stockChanged();
+        },function(){});
+      }catch(e){db=null}
+    },function(){resetBtn.hidden=false});
+    window.claude.use('user').then(function(u){
+      if(u&&u.isOwner) u.isOwner().then(function(o){if(o) resetBtn.hidden=false},function(){});
+    },function(){});
+  }
+
+  /* ================= load the catalogue ================= */
+  fetch('products.json').then(function(r){if(!r.ok) throw 0;return r.json()}).then(function(list){
+    PRODUCTS=list; byId={}; list.forEach(function(p){byId[p.id]=p});
+    var n=list.length;
+    $('collLede').textContent=n+' pieces in 925 silver, 18k gold vermeil and surgical steel, available online and at the shop. Pieces marked Only one are the last we have.';
+    var hero=byId[HERO_ID];
+    if(hero){$('heroName').textContent=hero.name;$('heroMeta').textContent=matLabel(hero)+' · '+priceText(hero)}
+    restoreCart(); merge(); renderGrid(); paintHero(); render(); startStock();
+  }).catch(function(){
+    grid.innerHTML='<p class="center muted" style="grid-column:1/-1">The collection could not load. Please refresh the page.</p>';
+  });
+
+  /* ================= shop time (America/Toronto) ================= */
+  var TZ='America/Toronto';
+  function torontoNow(){
+    var p={};
+    new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'})
+      .formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});
+    return {y:+p.year,m:+p.month,d:+p.day,h:(+p.hour)%24};
+  }
+  function iso(y,m,d){return new Date(Date.UTC(y,m-1,d)).toISOString().slice(0,10)}
+  var now=null; try{now=torontoNow()}catch(e){}
+  if(now){
+    var open=now.h>=12&&now.h<18;
+    var text=open?'Open now until 6 pm':(now.h<12?'Opens today at 12 pm':'Opens tomorrow at 12 pm');
+    document.querySelectorAll('[data-status]').forEach(function(el){
+      el.textContent=text; el.closest('.status').classList.toggle('is-open',open);
+    });
+  }
+
+  /* ================= copy helpers ================= */
+  function selectNode(node){try{var r=document.createRange();r.selectNodeContents(node);var s=window.getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}}
+  function copy(text,btn,fallbackNode){
+    var label=btn.textContent;
+    function done(ok){btn.textContent=ok?'Copied':'Selected';setTimeout(function(){btn.textContent=label},1800)}
+    var p; try{p=navigator.clipboard.writeText(text)}catch(e){p=null}
+    if(p&&p.then) p.then(function(){done(true)},function(){if(fallbackNode)selectNode(fallbackNode);done(false)});
+    else{if(fallbackNode)selectNode(fallbackNode);done(false)}
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var holder=b.closest('.line'),node=holder?holder.querySelector('.sel'):null;
+      copy(b.getAttribute('data-copy'),b,node||$('addr'));
+    });
+  });
+
+  /* ================= appointment request builder ================= */
+  var form=$('bookForm'),msg=$('msg');
+  var nameEl=$('f-name'),dateEl=$('f-date'),timeEl=$('f-time'),lenEl=$('f-len');
+  var notesEl=$('f-notes'),notesLabel=$('notesLabel');
+  var chosen=$('chosen'),chosenName=$('chosenName'),pieces=[];
+  for(var h=12;h<18;h++){['00','30'].forEach(function(mm){
+    var o=document.createElement('option');o.textContent=(h>12?h-12:12)+':'+mm+' pm';timeEl.appendChild(o);
+  })}
+  timeEl.selectedIndex=2;
+  if(now){dateEl.min=iso(now.y,now.m,now.d); if(!dateEl.value) dateEl.value=iso(now.y,now.m,now.d+1)}
+  function niceDate(v){
+    var p=v.split('-'); if(p.length!==3) return '';
+    return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric',timeZone:'UTC'});
+  }
+  var KINDS={
+    viewing:{lengths:['15 minutes','30 minutes','45 minutes','60 minutes'],pick:1,label:'Anything we should know? (optional)',ph:'For example: ring sizing, a gift, a piece you saw on Instagram'},
+    bespoke:{lengths:['15 minutes','30 minutes','45 minutes','60 minutes'],pick:1,label:'What do you have in mind?',ph:'For example: an 18-inch vermeil chain with a small pendant'},
+    gold:{lengths:['15 minutes','30 minutes'],pick:0,label:'What are you bringing in? (optional)',ph:'For example: gold rings, a chain, mixed jewelry'}
+  };
+  var lastKind=null;
+  function kind(){return form.querySelector('input[name=reason]:checked').value}
+  function pieceRef(p){return 'the '+p.name+(p.price!=null?' ('+money(p.price)+')':'')}
+  function build(){
+    var k=kind(),cfg=KINDS[k];
+    if(k!==lastKind){
+      var keep=lenEl.value; lenEl.innerHTML='';
+      cfg.lengths.forEach(function(l){var o=document.createElement('option');o.textContent=l;lenEl.appendChild(o)});
+      if(cfg.lengths.indexOf(keep)>=0) lenEl.value=keep; else lenEl.selectedIndex=cfg.pick;
+      notesLabel.textContent=cfg.label; notesEl.placeholder=cfg.ph; lastKind=k;
+    }
+    var showPiece=pieces.length>0&&k!=='gold';
+    chosen.hidden=!showPiece; if(showPiece) chosenName.textContent=pieces.map(function(p){return p.name+', '+priceText(p)}).join(' · ');
+    var name=nameEl.value.trim(),notes=notesEl.value.trim();
+    var when=dateEl.value?niceDate(dateEl.value)+' at '+timeEl.value+', for '+lenEl.value:'';
+    var out=[];
+    if(k==='viewing'){
+      out.push('Hello Yonge Jewelry, I would like to request a private appointment.');
+      if(showPiece) out.push('I am interested in '+pieces.map(pieceRef).join(' and ')+'.');
+      if(when) out.push('Preferred time: '+when+'.');
+      if(notes) out.push(notes);
+    }else if(k==='bespoke'){
+      out.push('Hello Yonge Jewelry, I would like to discuss a bespoke commission.');
+      if(showPiece) out.push('As a reference, I like '+pieces.map(function(p){return 'the '+p.name}).join(' and ')+'.');
+      if(notes) out.push('What I have in mind: '+notes);
+      if(when) out.push('Preferred time: '+when+'.');
+    }else{
+      out.push('Hello Yonge Jewelry, I would like to book a gold buying appointment.');
+      if(when) out.push('Preferred time: '+when+'.');
+      if(notes) out.push('What I am bringing in: '+notes);
+      out.push('I will bring government-issued ID.');
+    }
+    if(name) out.push('Thank you,\n'+name);
+    msg.textContent=out.join('\n\n');
+    $('textShop').href=smsHref(msg.textContent);
+  }
+  form.addEventListener('input',build);
+  form.addEventListener('change',build);
+  form.addEventListener('submit',function(e){e.preventDefault()});
+  $('chosenClear').addEventListener('click',function(){pieces=[];build()});
+  $('copyMsg').addEventListener('click',function(){copy(msg.textContent,this,msg)});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-piece],[data-reason],#storeBook'); if(!a) return;
+    var pid=a.getAttribute('data-piece'),r=a.getAttribute('data-reason');
+    if(a.id==='storeBook'){pieces=inCart().slice();r='viewing'}
+    if(pid&&byId[pid]){pieces=[byId[pid]]; if(kind()==='gold'&&!r) r='viewing'}
+    if(r){var el=$('r-'+r); if(el) el.checked=true}
+    build();
+  });
+  build();
+})();
+</script>
+
+</body>
+</html>
