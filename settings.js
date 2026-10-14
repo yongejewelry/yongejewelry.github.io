@@ -10,15 +10,15 @@
 window.YONGE_SETTINGS = {
 
   // From Square: Credentials page, "Application ID"
-  squareApplicationId: '',
+  squareApplicationId: 'sandbox-sq0idb-QU_QlEVPNlDHrUneSHVMIA',
 
   // From Square: Locations page, "Location ID"
-  squareLocationId: '',
+  squareLocationId: 'LHV16GGVAPKMD',
 
   // Type sandbox while testing. Type production when you go live.
   squareEnvironment: 'sandbox',
 
   // Your Cloudflare worker address, for example https://yonge-payments.yourname.workers.dev
-  paymentsAddress: ''
+  paymentsAddress: 'https://yonge-payments.lana-muradd.workers.dev/'
 
 };
