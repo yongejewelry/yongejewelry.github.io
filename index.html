@@ -614,7 +614,7 @@ a.add{text-align:center;text-decoration:none}
           <div class="field"><label for="co-name">Full name</label><input type="text" id="co-name" autocomplete="name"></div>
           <div class="duo">
             <div class="field"><label for="co-email">Email</label><input type="email" id="co-email" autocomplete="email"></div>
-            <div class="field"><label for="co-phone">Mobile, for a text receipt (optional)</label><input type="tel" id="co-phone" autocomplete="tel"></div>
+            <div class="field"><label for="co-phone">Phone (optional)</label><input type="tel" id="co-phone" autocomplete="tel"></div>
           </div>
         </fieldset>
         <fieldset class="set">
@@ -1058,7 +1058,7 @@ a.add{text-align:center;text-decoration:none}
     if(d.code==='CA') need(f.postal,'a postal code like M5T 1K7',function(v){return /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(v)});
     else if(d.code==='US') need(f.postal,'a 5-digit ZIP code',function(v){return /^\d{5}(-?\d{4})?$/.test(v)});
     else need(f.postal,'your postal code');
-    need(f.phone,'a mobile number with area code (or leave it empty)',function(v){
+    need(f.phone,'a phone number with area code (or leave it empty)',function(v){
       if(!v) return true; var n=v.replace(/\D/g,'');
       return /^\+/.test(v)||/^00/.test(n)?n.length>=8&&n.length<=15:((d.code==='CA'||d.code==='US')?(n.length===10||(n.length===11&&n.charAt(0)==='1')):n.length>=6&&n.length<=14);
     });
@@ -1197,8 +1197,8 @@ a.add{text-align:center;text-decoration:none}
         o.items.forEach(function(it){delete cart[it.id]}); save();
         $('orderText').textContent=o.text.replace(/^Order \S+/,'Order '+r.ref)+'\n\n'+(PAY_MODE==='square'?'Paid with Square: '+money2(r.total!=null?r.total:o.total):'Test order: no payment was taken.');
         var rl=$('receiptLink'); rl.hidden=!r.receipt; if(r.receipt) rl.href=r.receipt;
-        var sent=r.sent||{},via=[]; if(sent.email) via.push('by email to '+sent.email); if(sent.text) via.push('by text to '+sent.text);
-        $('doneSent').textContent=via.length?'Your receipt is on its way '+via.join(' and ')+'.':''; $('doneSent').hidden=!via.length;
+        var sent=r.sent||{};
+        $('doneSent').textContent=sent.email?'Your receipt is on its way to '+sent.email+'.':''; $('doneSent').hidden=!sent.email;
         $('doneTest').hidden=PAY_MODE!=='test'; $('doneLocal').hidden=!(PAY_MODE==='test'&&(localOnly||!db));
         pending=null; coState='done'; unlock(); refreshStock(); stockChanged(); window.scrollTo(0,0); return;
       }
